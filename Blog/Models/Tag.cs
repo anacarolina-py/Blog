@@ -1,0 +1,18 @@
+﻿namespace Blog.API.Models
+{
+    public class Tag
+    {
+        public int Id { get; private set; }
+        public string Name { get; private set; }
+        public string Slug { get; private set; }
+        public Tag(string name, string slug)
+        {
+            Name = name;
+            Slug = slug;
+        }
+        public void SetId(int id)
+        {
+            Id = id;
+        }
+    }
+}
