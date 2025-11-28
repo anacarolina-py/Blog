@@ -9,7 +9,8 @@
         public string Bio { get; private set; }
         public string Image { get; private set; }
         public string Slug { get; private set; }
-        
+        public List<Role> Roles { get; private set; } 
+
         public User(string name, string email, string passwordHash, string bio, string image, string slug)
         {
             Name = name;

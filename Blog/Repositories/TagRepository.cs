@@ -1,5 +1,6 @@
 ﻿using Blog.API.Data;
 using Blog.API.Models;
+using Blog.API.Models.DTOs.Post;
 using Blog.API.Models.DTOs.Role;
 using Blog.API.Models.DTOs.Tag;
 using Dapper;
@@ -47,5 +48,17 @@ namespace Blog.API.Repositories
             var sql = "UPDATE Tag SET Name = @Name, Slug = @Slug WHERE Id = @Id";
             await _connection.ExecuteAsync(sql, new { tag.Name, tag.Slug, tag.Id });
         }
+
+        //public async Task<List<PostResponseDTO>> GetPostsByTagAsync(string tag)
+        //{
+        //    var sql = @"
+        //        SELECT p.Title, p.Summary, p.Body, p.Slug
+        //        FROM Post p
+        //        INNER JOIN PostTag pt ON p.Id = pt.PostId
+        //        INNER JOIN Tag t ON pt.TagId = t.Id
+        //        WHERE t.Slug = @TagSlug";
+        //    var posts = (await _connection.QueryAsync<PostResponseDTO>(sql, new { TagSlug = tag })).ToList();
+        //    return posts;
+        //}
     }
 }

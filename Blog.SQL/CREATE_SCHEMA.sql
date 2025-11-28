@@ -66,3 +66,29 @@ CREATE TABLE [PostTag] (
     [TagId] INT NOT NULL,
     CONSTRAINT PK_PostTag PRIMARY KEY([PostId], [TagId])
 ) 
+ALTER TABLE [UserRole] WITH CHECK ADD
+    CONSTRAINT [FK_User_Id] FOREIGN KEY([UserId]) REFERENCES [User]([Id]),
+    CONSTRAINT [FK_Role_Id] FOREIGN KEY([RoleId]) REFERENCES [Role]([Id])
+ 
+ALTER TABLE [PostTag] WITH CHECK ADD
+    CONSTRAINT [FK_TagPost_PostId] FOREIGN KEY([PostId]) REFERENCES [Post]([Id]),
+    CONSTRAINT [FK_TagPost_TagId] FOREIGN KEY([TagId]) REFERENCES [Tag]([Id])
+
+
+SELECT * FROM Category
+
+SELECT * FROM Role
+
+SELECT * FROM Tag
+
+SELECT * FROM [User]
+
+SELECT * FROM Post
+
+SELECT *
+FROM [User] u
+JOIN [UserRole] ur
+ON u.Id = ur.UserId
+JOIN [Role] r
+ON r.Id = ur.RoleId
+

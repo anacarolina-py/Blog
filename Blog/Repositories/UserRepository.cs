@@ -59,5 +59,28 @@ namespace Blog.API.Repositories
             var sql = "UPDATE [User] SET Image = @Image WHERE Id = @Id";
             await _connection.ExecuteAsync(sql, new { Image = image, Id = id});
         }
+        public async Task<List<User>> GetAllUserRoles()
+        {
+            
+            var sql = @"SELECT * FROM [User] u 
+                    JOIN [UserRole] ur ON u.Id = ur.UserId 
+                    JOIN [Role] r ON r.Id = ur.RoleId";
+
+            IEnumerable<User> userRoles = new List<User>();
+
+            await _connection.QueryAsync<User, Role, User>
+
+               (sql,
+                (user, role) =>
+                {
+                    user.Roles.Add(role);
+                    return user;
+                },
+
+             splitOn: "Id");
+
+            return userRoles.ToList();
+            
+        }
     }
 }

@@ -11,5 +11,7 @@
         public string Slug { get; private set; }
         public DateTime CreateDate { get; private set; }
         public DateTime LastUpdateDate { get; private set; }
+
+        public List<Tag> Tags { get; set; }
     }
 }
